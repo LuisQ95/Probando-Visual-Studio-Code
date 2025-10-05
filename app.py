@@ -14,6 +14,11 @@ except FileNotFoundError:
     pipeline = None
     print("Error: No se encontró el archivo 'pipeline_churn.joblib'. Asegúrate de ejecutar primero el script de entrenamiento.")
 
+# Ruta de bienvenida para verificar que el servidor está funcionando
+@app.route('/', methods=['GET'])
+def home():
+    return "<h1>Servidor de predicción de Churn</h1><p>El servidor está funcionando. Usa el endpoint /predict para hacer predicciones.</p>"
+
 # 3. Definir un "endpoint" para hacer predicciones
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -43,4 +48,3 @@ def predict():
 if __name__ == '__main__':
     # El servidor estará disponible en http://127.0.0.1:5000
     app.run(debug=True, port=5000)
-
